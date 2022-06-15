@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
-// const routes = require("./controllers");
+const routes = require("./controllers");
 const session = require("express-session");
 const sequelize = require("./config/connection");
 
@@ -30,10 +30,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// turn on routes
-// app.use(routes);
+// Turn on routes
+app.use(routes);
 
-// turn on connection to db and server
+// Connect to database
 sequelize.sync({ force: false }).then(() => {
+  // Connect to server
   app.listen(PORT, () => console.log("Now listening"));
 });
