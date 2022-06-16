@@ -19,9 +19,9 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // Content column - a string that cannot be null
+    // Content column - text (can be larger than a string) that cannot be null
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     // User_id column - integer that references the ID column of the user table
