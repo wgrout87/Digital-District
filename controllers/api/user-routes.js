@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     attributes: { exclude: ["password"] },
   })
     // Returns the user info for all users
-    .then((dbUserData) => res.json(dbUserData))
+    .then((userData) => res.json(userData))
     // Basic error catching
     .catch((err) => res.status(500).json(err));
 });
@@ -25,14 +25,14 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((dbUserData) => {
+    .then((userData) => {
       // Checks if the user at the specified ID exists - sends an error if they don't
-      if (!dbUserData) {
+      if (!userData) {
         res.status(404).json({ message: "No user found with this id" });
         return;
       }
       // Returns the user info
-      res.json(dbUserData);
+      res.json(userData);
     })
     // Basic error catching
     .catch((err) => res.status(500).json(err));
@@ -42,14 +42,14 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new user (username and password)
   User.create(req.body)
-    .then((dbUserData) => {
+    .then((userData) => {
       req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+        req.session.user_id = userData.id;
+        req.session.username = userData.username;
         // Establishes a loggedIn variable and sets it to true
         req.session.loggedIn = true;
 
-        res.json(dbUserData);
+        res.json(userData);
       });
     })
     // Basic error catching
@@ -67,14 +67,14 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((dbUserData) => {
+    .then((userData) => {
       // Checks if the user at the specified ID exists - sends an error if they don't
-      if (!dbUserData[0]) {
+      if (!userData[0]) {
         res.status(404).json({ message: "No user found with this id" });
         return;
       }
       // Will return the updated user info
-      res.json(dbUserData);
+      res.json(userData);
     })
     // Basic error catching
     .catch((err) => res.status(500).json(err));
@@ -88,14 +88,14 @@ router.delete("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((dbUserData) => {
+    .then((userData) => {
       // Checks if the user at the specified ID exists - sends an error if they don't
-      if (!dbUserData) {
+      if (!userData) {
         res.status(404).json({ message: "No user found with this id" });
         return;
       }
       // Will return the number of changed rows
-      res.json(dbUserData);
+      res.json(userData);
     })
     // Basic error catching
     .catch((err) => res.status(500).json(err));
