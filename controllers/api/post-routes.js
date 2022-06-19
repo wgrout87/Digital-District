@@ -36,7 +36,11 @@ router.get("/:id", (req, res) => {
 // POST /api/posts - adds a new post to the database
 router.post("/", (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new post (postname and password)
-  Post.create(req.body)
+  Post.create({
+    title: req.body.title,
+    content: req.body.content,
+    user_id: req.session.user_id,
+  })
     .then((postData) => res.json(postData))
     // Basic error catching
     .catch((err) => res.status(500).json(err));

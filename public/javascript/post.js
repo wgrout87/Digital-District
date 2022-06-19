@@ -1,5 +1,3 @@
-const req = require("express/lib/request");
-
 async function postFormHandler(event) {
   event.preventDefault();
 
@@ -7,18 +5,17 @@ async function postFormHandler(event) {
   const content = document.querySelector("#content").value.trim();
 
   if (title && content) {
-    const response = await fetch("/aip/posts", {
-      method: "post",
+    const response = await fetch("/api/posts", {
+      method: "POST",
       body: JSON.stringify({
         title,
         content,
-        user_id: req.session.user_id,
       }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      console.log("success");
+      document.location.replace("/dashboard");
     } else {
       alert(response.statusText);
     }
