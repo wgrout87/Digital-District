@@ -6,7 +6,15 @@ router.get("/", (req, res) => {
   console.log("======================");
   console.log(req.session);
   console.log("======================");
-  Post.findAll({})
+  Post.findAll({
+    attributes: ["title", "content", "created_at", "updated_at"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
       // pass a single post object into the homepage template
