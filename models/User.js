@@ -24,6 +24,7 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     // Password column - a string that cannot be null and with validation
     password: {

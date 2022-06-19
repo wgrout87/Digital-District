@@ -17,7 +17,7 @@ async function loginFormHandler(event) {
     if (response.ok) {
       document.location.replace("/");
     } else {
-      alert(response.message);
+      alert("Incorrect username or password.");
     }
   }
 }
@@ -27,5 +27,5 @@ function displaySubmit(event) {
   document.location.replace("/signup");
 }
 
-document.querySelector("#login").addEventListener("submit", loginFormHandler);
+document.querySelector("#login").addEventListener("click", loginFormHandler);
 document.querySelector("#signup").addEventListener("click", displaySubmit);
