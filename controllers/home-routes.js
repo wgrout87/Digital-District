@@ -29,4 +29,21 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("login", {
+    login: true,
+  });
+});
+
+router.get("/signup", (req, res) => {
+  res.render("login", {
+    login: false,
+  });
+});
+
 module.exports = router;
