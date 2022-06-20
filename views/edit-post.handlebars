@@ -9,24 +9,21 @@
           type="text"
           id="title"
           class="form-control"
-          placeholder="Post Title"
+          value="{{post.title}}"
         />
       </div>
       <div>
         <label for="content" class="form-label">CONTENT:</label>
-        <textarea
-          id="content"
-          class="form-control"
-          placeholder="Post Content"
-        ></textarea>
+        <textarea id="content" class="form-control">{{post.content}}</textarea>
       </div>
       <div class="d-flex flex-column">
         <button
           type="submit"
-          id="publish"
+          id="update"
           class="btn btn-light text-dark mt-3"
-        >PUBLISH</button>
-        <script src="/javascript/post.js"></script>
+          data-id={{post.id}}
+        >UPDATE</button>
+        <script src="/javascript/update.js"></script>
       </div>
     </form>
   </div>

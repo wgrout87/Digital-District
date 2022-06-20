@@ -4,9 +4,11 @@
   </li>
 </ul>
 {{#if (is_current_user post.user_id currentUser)}}
-<button type="button" id="delete" class="btn btn-dark text-light mb-3 mx-5">DELETE POST</button>
+<button type="button" id="delete" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>DELETE POST</button>
+<button type="button" id="edit" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>EDIT POST</button>
+<script src="/javascript/user-owned-posts.js"></script>
 {{/if}}
-<section class="border border-dark border-2 rounded mx-5" data-id={{id}}>
+<section class="border border-dark border-2 rounded mx-5" data-id={{post.id}}>
   <div class="bg-dark">
     <p class="border-bottom border-light border-3 mb-0 display-6 px-2">Comments</p>
   </div>
