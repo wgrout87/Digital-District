@@ -4,10 +4,15 @@
   </li>
 </ul>
 {{#if (is_current_user post.user_id currentUser)}}
-<button type="button" id="delete" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>DELETE POST</button>
 <button type="button" id="edit" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>EDIT POST</button>
+<button type="button" id="delete" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>DELETE POST</button>
 <script src="/javascript/user-owned-posts.js"></script>
 {{/if}}
+<div class="mx-5">
+  <textarea name="commentArea" id="commentArea" placeholder="Leave a comment here" class="form-control"></textarea>
+</div>
+<button type="button" id="comment" class="btn btn-dark text-light my-3 ms-5" data-id={{post.id}}>LEAVE A COMMENT</button>
+
 <section class="border border-dark border-2 rounded mx-5" data-id={{post.id}}>
   <div class="bg-dark">
     <p class="border-bottom border-light border-3 mb-0 display-6 px-2">Comments</p>
@@ -22,3 +27,4 @@
 </section>
 
 <script src="/javascript/existing-post.js"></script>
+<script src="/javascript/comment.js"></script>

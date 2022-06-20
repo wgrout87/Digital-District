@@ -36,7 +36,11 @@ router.get("/:id", (req, res) => {
 // comment /api/comments - adds a new comment to the database
 router.post("/", (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new comment (commentname and password)
-  Comment.create(req.body)
+  Comment.create({
+    comment_text: req.body.comment_text,
+    user_id: req.session.user_id,
+    post_id: req.body.post_id,
+  })
     .then((commentData) => res.json(commentData))
     // Basic error catching
     .catch((err) => res.status(500).json(err));
