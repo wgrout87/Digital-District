@@ -4,6 +4,6 @@
   <p class="lead">{{user.username}}</p>
   <p>Posted {{format_date createdAt}}</p>
 </div>
-<div class="px-2 py-1">
-  <p>{{comment_text}}</p>
+<div id="parent{{id}}" class="px-2 py-1">
+  <p id="comment{{id}}" data-id="{{id}}">{{comment_text}}</p>
 </div>

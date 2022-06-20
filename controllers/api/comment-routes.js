@@ -36,7 +36,7 @@ router.get("/:id", (req, res) => {
 
 // comment /api/comments - adds a new comment to the database
 router.post("/", withAuth, (req, res) => {
-  // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new comment (commentname and password)
+  // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new comment (comment_text, user_id, and post_id)
   Comment.create({
     comment_text: req.body.comment_text,
     user_id: req.session.user_id,
@@ -49,7 +49,7 @@ router.post("/", withAuth, (req, res) => {
 
 // PUT /api/comments/:id - updates a specific comment in the database
 router.put("/:id", (req, res) => {
-  // req.body is used because the body of the JSON object being passed through the route should have any pertinent information to update the comment (commentname, password, or both)
+  // req.body is used because the body of the JSON object being passed through the route should have any pertinent information to update the comment (comment_text, user_id, and/or post_id)
   Comment.update(req.body, {
     // Indicates which comment to update
     where: {

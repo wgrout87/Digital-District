@@ -17,7 +17,7 @@
 <script src="/javascript/comment.js"></script>
 {{/if}}
 
-<section class="border border-dark border-2 rounded mx-5" data-id={{post.id}}>
+<section class="border border-dark border-2 rounded mx-5" id="commentSection" data-id={{post.id}}>
   <div class="bg-dark">
     <p class="border-bottom border-light border-3 mb-0 display-6 px-2">Comments</p>
   </div>
@@ -27,8 +27,8 @@
         {{> comment-info comment}}
       </li>
     {{#if (is_current_user comment.user.id ../currentUser)}}
-      <button type="button" id="editComment" class="btn btn-dark text-light my-1 ms-2" data-id={{post.id}}>EDIT COMMENT</button>
-      <button type="button" id="deleteComment" class="btn btn-dark text-light my-1 ms-1" data-id={{post.id}}>DELETE COMMENT</button>
+      <button type="button" id="edit{{comment.id}}" class="editComment btn btn-dark text-light my-1 ms-2" data-id={{comment.id}}>EDIT COMMENT</button>
+      <button type="button" class="deleteComment btn btn-dark text-light my-1 ms-1" data-id={{comment.id}}>DELETE COMMENT</button>
     {{/if}}
     {{else}}
       <p>There are no comments for this post.</p>
@@ -37,3 +37,4 @@
 </section>
 
 <script src="/javascript/existing-post.js"></script>
+<script src="/javascript/modify-comments.js"></script>
