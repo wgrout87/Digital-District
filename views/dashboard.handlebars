@@ -1,5 +1,7 @@
-<button class="btn btn-dark mx-5 mt-3" id="addPost">Add a New Post</button>
+{{!-- A button for redirecting to the post page to add new posts --}}
+<button class="btn btn-dark mx-5 mt-3" id="addPost">ADD A NEW POST</button>
 
+{{!-- Uses the post-info partial to render all of the user's posts --}}
 <ul class="list-unstyled mx-5">
   {{#each posts as |post|}}
   <li class="my-3">
@@ -8,5 +10,8 @@
   {{/each}}
 </ul>
 
+{{!-- Adds scripts to the page --}}
+{{!-- For the new post button  --}}
 <script src="/javascript/dashboard.js"></script>
+{{!-- For the individual posts which can be clicked on to display each post individually --}}
 <script src="/javascript/existing-post.js"></script>

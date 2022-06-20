@@ -1,14 +1,17 @@
+{{!-- Page to display any existing posts --}}
 <ul class="list-unstyled mx-5">
   <li class="my-3">
     {{> post-info post}}
   </li>
 </ul>
+{{!-- Adds edit and delete buttons if the post belongs to the currently logged in user --}}
 {{#if (is_current_user post.user_id currentUser)}}
 <button type="button" id="edit" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>EDIT POST</button>
 <button type="button" id="delete" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>DELETE POST</button>
 <script src="/javascript/user-owned-posts.js"></script>
 {{/if}}
 
+{{!-- A logged in user will have the option to leave a comment - otherwise this section will not display --}}
 {{#if loggedIn}}
 <div class="mx-5">
   <textarea name="commentArea" id="commentArea" placeholder="Leave a comment here" class="form-control"></textarea>
@@ -22,14 +25,17 @@
     <p class="border-bottom border-light border-3 mb-0 display-6 px-2">Comments</p>
   </div>
   <ul class="list-unstyled">
+    {{!-- Displays all comments associated to a post --}}
     {{#each post.comments as |comment|}}
       <li>
         {{> comment-info comment}}
       </li>
+      {{!-- If a comment was posted by the currently logged in user, they will have the option to edit or delete the comment --}}
     {{#if (is_current_user comment.user.id ../currentUser)}}
       <button type="button" id="edit{{comment.id}}" class="editComment btn btn-dark text-light my-1 ms-2" data-id={{comment.id}}>EDIT COMMENT</button>
       <button type="button" class="deleteComment btn btn-dark text-light my-1 ms-1" data-id={{comment.id}}>DELETE COMMENT</button>
     {{/if}}
+    {{!-- If a post has no comments, this will display --}}
     {{else}}
       <p>There are no comments for this post.</p>
     {{/each}}

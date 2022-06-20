@@ -101,25 +101,31 @@ router.delete("/:id", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
+// Login route - expects a username and password in the req.body
 router.post("/login", (req, res) => {
-  // expects {username: '', password: ''}
+  // Returns a specific user from the database
   User.findOne({
+    // Specifies the username of the desired user
     where: {
       username: req.body.username,
     },
   }).then((dbUserData) => {
+    // Checks if the user at the specified username exists - sends an error if they don't
     if (!dbUserData) {
       res.status(400).json({ message: "No user with that username!" });
       return;
     }
 
+    // Checks that the password is valid using the checkPassword method for Users
     const validPassword = dbUserData.checkPassword(req.body.password);
 
+    // Sends an error if the password did not match
     if (!validPassword) {
       res.status(400).json({ message: "Incorrect password!" });
       return;
     }
 
+    // Establishes a new session if the login credentials were correct
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
@@ -130,6 +136,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+// Logout route - ends the session
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
