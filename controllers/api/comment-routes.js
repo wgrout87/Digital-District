@@ -48,7 +48,7 @@ router.post("/", withAuth, (req, res) => {
 });
 
 // PUT /api/comments/:id - updates a specific comment in the database
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have any pertinent information to update the comment (comment_text, user_id, and/or post_id)
   Comment.update(req.body, {
     // Indicates which comment to update
@@ -70,7 +70,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE /api/comments/:id - deletes a specific comment in the database
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   Comment.destroy({
     // Indicates which comment to update
     where: {
