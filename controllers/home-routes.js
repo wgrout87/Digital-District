@@ -54,6 +54,11 @@ router.get("/post/:id", (req, res) => {
     },
     include: [
       {
+        model: User,
+        // Does not return their passwords
+        attributes: { exclude: ["password"] },
+      },
+      {
         model: Comment,
         include: {
           model: User,
