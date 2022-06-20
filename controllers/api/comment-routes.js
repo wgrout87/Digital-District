@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // GET /api/comments - gets all comments in the database
 router.get("/", (req, res) => {
@@ -34,7 +35,7 @@ router.get("/:id", (req, res) => {
 });
 
 // comment /api/comments - adds a new comment to the database
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new comment (commentname and password)
   Comment.create({
     comment_text: req.body.comment_text,

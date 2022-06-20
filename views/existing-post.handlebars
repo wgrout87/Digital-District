@@ -8,10 +8,14 @@
 <button type="button" id="delete" class="btn btn-dark text-light mb-3 ms-5" data-id={{post.id}}>DELETE POST</button>
 <script src="/javascript/user-owned-posts.js"></script>
 {{/if}}
+
+{{#if loggedIn}}
 <div class="mx-5">
   <textarea name="commentArea" id="commentArea" placeholder="Leave a comment here" class="form-control"></textarea>
 </div>
 <button type="button" id="comment" class="btn btn-dark text-light my-3 ms-5" data-id={{post.id}}>LEAVE A COMMENT</button>
+<script src="/javascript/comment.js"></script>
+{{/if}}
 
 <section class="border border-dark border-2 rounded mx-5" data-id={{post.id}}>
   <div class="bg-dark">
@@ -19,12 +23,17 @@
   </div>
   <ul class="list-unstyled">
     {{#each post.comments as |comment|}}
-    <li>
-      {{> comment-info comment}}
-    </li>
+      <li>
+        {{> comment-info comment}}
+      </li>
+    {{#if (is_current_user comment.user.id ../currentUser)}}
+      <button type="button" id="editComment" class="btn btn-dark text-light my-1 ms-2" data-id={{post.id}}>EDIT COMMENT</button>
+      <button type="button" id="deleteComment" class="btn btn-dark text-light my-1 ms-1" data-id={{post.id}}>DELETE COMMENT</button>
+    {{/if}}
+    {{else}}
+      <p>There are no comments for this post.</p>
     {{/each}}
   </ul>
 </section>
 
 <script src="/javascript/existing-post.js"></script>
-<script src="/javascript/comment.js"></script>

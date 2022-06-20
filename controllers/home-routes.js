@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", (req, res) => {
   Post.findAll({
@@ -90,7 +90,7 @@ router.get("/post/:id", (req, res) => {
 });
 
 // GET /post/:id - gets a specific post in the database to be viewed on a single post page
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
   // Returns a specific post from the database
   Post.findOne({
     // Specifies the primary key of the desired post

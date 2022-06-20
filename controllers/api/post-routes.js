@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Post } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // GET /api/posts - gets all posts in the database
 router.get("/", (req, res) => {
@@ -34,7 +35,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST /api/posts - adds a new post to the database
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have all the pertinent information to create a new post (postname and password)
   Post.create({
     title: req.body.title,
@@ -47,7 +48,7 @@ router.post("/", (req, res) => {
 });
 
 // PUT /api/posts/:id - updates a specific post in the database
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   // req.body is used because the body of the JSON object being passed through the route should have any pertinent information to update the post (postname, password, or both)
   Post.update(req.body, {
     // Indicates which post to update
@@ -69,7 +70,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE /api/posts/:id - deletes a specific post in the database
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   Post.destroy({
     // Indicates which post to update
     where: {
