@@ -1,12 +1,12 @@
-<article class="border border-dark border-2 rounded">
+<article class="border border-dark border-2 rounded" data-id={{id}}>
   <div
     class="bg-dark px-2 pb-1 d-flex justify-content-between align-items-center"
   >
     <p class="lead">{{title}}</p>
-    {{#if (is_updated created_at updated_at)}}
-      <p>Updated by {{user.username}} {{format_date updated_at}}</p>
+    {{#if (is_updated createdAt updatedAt)}}
+      <p>Updated by {{user.username}} {{format_date updatedAt}}</p>
     {{else}}
-      <p>Posted by {{user.username}} {{format_date created_at}}</p>
+      <p>Posted by {{user.username}} {{format_date createdAt}}</p>
     {{/if}}
   </div>
   <div class="px-2 py-1">

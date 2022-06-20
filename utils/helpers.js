@@ -5,8 +5,8 @@ module.exports = {
     let currentTime = new Date();
     return formatDistance(date, currentTime, { addSuffix: true });
   },
-  is_updated: (created_at, updated_at) => {
-    if (compareAsc(created_at, updated_at) === -1) {
+  is_updated: (createdAt, updatedAt) => {
+    if (compareAsc(createdAt, updatedAt) === -1) {
       return true;
     }
     return false;

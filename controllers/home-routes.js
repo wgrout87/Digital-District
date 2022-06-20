@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   // console.log(req.session);
   // console.log("======================");
   Post.findAll({
-    attributes: ["title", "content", "created_at", "updated_at"],
+    attributes: ["id", "title", "content", "createdAt", "updatedAt"],
     order: [["updated_at", "DESC"]],
     include: [
       {
@@ -45,6 +45,45 @@ router.get("/signup", (req, res) => {
   res.render("login", {
     login: false,
   });
+});
+
+// GET /post/:id - gets a specific post in the database
+router.get("/post/:id", (req, res) => {
+  // Returns a specific post from the database
+  Post.findOne({
+    // Specifies the primary key of the desired post
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: Comment,
+        include: {
+          model: User,
+          // Does not return their passwords
+          attributes: { exclude: ["password"] },
+        },
+      },
+    ],
+  })
+    .then((postData) => {
+      // Checks if the post at the specified ID exists - sends an error if they don't
+      if (!postData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      // res.json(postData);
+      // serialize the data
+      const post = postData.get({ plain: true });
+
+      // pass data to template
+      res.render("existing-post", {
+        post,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    // Basic error catching
+    .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;

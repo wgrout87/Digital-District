@@ -1,0 +1,15 @@
+
+<ul class="list-unstyled mx-5">
+  <li class="my-3">
+    {{> post-info post}}
+  </li>
+</ul>
+<section class="border border-dark border-2 rounded mx-5" data-id={{id}}>
+  <ul class="list-unstyled">
+    {{#each post.comments as |comment|}}
+    <li>
+      {{> comment-info comment}}
+    </li>
+    {{/each}}
+  </ul>
+</section>
