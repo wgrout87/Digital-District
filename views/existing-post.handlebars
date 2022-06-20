@@ -1,10 +1,15 @@
-
 <ul class="list-unstyled mx-5">
   <li class="my-3">
     {{> post-info post}}
   </li>
 </ul>
+{{#if (is_current_user post.user_id currentUser)}}
+<button type="button" id="delete" class="btn btn-dark text-light mb-3 mx-5">DELETE POST</button>
+{{/if}}
 <section class="border border-dark border-2 rounded mx-5" data-id={{id}}>
+  <div class="bg-dark">
+    <p class="border-bottom border-light border-3 mb-0 display-6 px-2">Comments</p>
+  </div>
   <ul class="list-unstyled">
     {{#each post.comments as |comment|}}
     <li>
@@ -13,3 +18,5 @@
     {{/each}}
   </ul>
 </section>
+
+<script src="/javascript/existing-post.js"></script>

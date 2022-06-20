@@ -3,9 +3,6 @@ const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 
 router.get("/", (req, res) => {
-  // console.log("======================");
-  // console.log(req.session);
-  // console.log("======================");
   Post.findAll({
     attributes: ["id", "title", "content", "createdAt", "updatedAt"],
     order: [["updated_at", "DESC"]],
@@ -72,7 +69,7 @@ router.get("/post/:id", (req, res) => {
         res.status(404).json({ message: "No post found with this id" });
         return;
       }
-      // res.json(postData);
+
       // serialize the data
       const post = postData.get({ plain: true });
 
@@ -80,6 +77,7 @@ router.get("/post/:id", (req, res) => {
       res.render("existing-post", {
         post,
         loggedIn: req.session.loggedIn,
+        currentUser: req.session.user_id,
       });
     })
     // Basic error catching

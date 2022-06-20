@@ -11,4 +11,10 @@ module.exports = {
     }
     return false;
   },
+  is_current_user: (postUser, currentUser) => {
+    if (postUser === currentUser) {
+      return true;
+    }
+    return false;
+  },
 };
