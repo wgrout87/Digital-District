@@ -136,12 +136,18 @@ router.get("/edit/:id", withAuth, (req, res) => {
 
       const post = postData.get({ plain: true });
 
-      // Will display the edit page using the edit-post handlebars - currentUser is used to provide options specific to the current user, allowing them to modify their posts and comments
-      res.render("edit-post", {
-        post,
-        loggedIn: req.session.loggedIn,
-        currentUser: req.session.user_id,
-      });
+      // Will only display the edit post page if the
+      if (post.user_id === req.session.user_id) {
+        // Will display the edit page using the edit-post handlebars - currentUser is used to provide options specific to the current user, allowing them to modify their posts and comments
+        res.render("edit-post", {
+          post,
+          loggedIn: req.session.loggedIn,
+          currentUser: req.session.user_id,
+        });
+      } else {
+        // Will redirect to the single post page for the same post if the user isn't the post owner
+        res.redirect("/post/" + req.params.id);
+      }
     })
     // Basic error catching
     .catch((err) => res.status(500).json(err));
