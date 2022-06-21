@@ -28,8 +28,13 @@ The project has been deployed to Heroku, and can be visited at [https://calm-eyr
 
 The Digital District is an app for creating and commenting on blog posts. The homepage displays all of the post activity, with the most recently updated posts at the top of the list. Users can see all blog posts from the homepage, but they can also click on individual blog posts to see them on a page by themselves and interact with the posts through comments. On the individual post pages, all comments will be displayed, and the user will have the option to update or delete the post if they were the original creator, as well as any comments they may have made. While logged in, the user also has the ability to access their dashboard, which displays all of the posts they have created. While logged out, access to many of the app's functionality is limited, but the user can still view posts and comments.
 
+The app's homepage:
 ![Homepage Screenshot](./assets/images/homepage.png)
+
+The app's login screen:
 ![Login Screenshot](./assets/images/login.png)
+
+A single post screen:
 ![Post Screenshot](./assets/images/post.png)
 
 ## License
