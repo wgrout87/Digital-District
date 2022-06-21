@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { route } = require("express/lib/application");
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
@@ -81,9 +82,12 @@ router.get("/post/:id", (req, res) => {
     ],
   })
     .then((postData) => {
-      // Checks if the post at the specified ID exists - sends an error if they don't
+      // Checks if the post at the specified ID exists - renders an error page if it doesn't exist
       if (!postData) {
-        res.status(404).json({ message: "No post found with this id" });
+        res.render("error", {
+          message: "404 - No post was found with that ID.",
+          loggedIn: req.session.loggedIn,
+        });
         return;
       }
 
@@ -128,9 +132,12 @@ router.get("/edit/:id", withAuth, (req, res) => {
     ],
   })
     .then((postData) => {
-      // Checks if the post at the specified ID exists - sends an error if they don't
+      // Checks if the post at the specified ID exists - renders an error page if it doesn't exist
       if (!postData) {
-        res.status(404).json({ message: "No post found with this id" });
+        res.render("error", {
+          message: "404 - No post was found with that ID.",
+          loggedIn: req.session.loggedIn,
+        });
         return;
       }
 
