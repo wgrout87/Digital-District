@@ -22,7 +22,17 @@ The Digital District is a CMS style blog allowing users to log in to an account 
 
 ## Installation
 
-The project has been deployed to Heroku, and can be visited at [https://calm-eyrie-82020.herokuapp.com/](https://calm-eyrie-82020.herokuapp.com/). To run the app locally, first run the command "npm i" to install the app's dependencies. Next open up a MYSQL terminal and run a SOURCE command to establish the database from the schema.sql file located in the db folder in the project's base directory. At that point, it should be good to go and can be started with the command "npm start". Your own instance of a Heroku deployment could also be achieved by running the commands "heroku create", "git push heroku main", and "heroku config:set SuperSecret="your secret phrase here"". The last command establish the secret variable that is necessary for running sessions. At that point the app should be fully up and running.
+The project has been deployed to Heroku, and can be visited at [https://calm-eyrie-82020.herokuapp.com/](https://calm-eyrie-82020.herokuapp.com/). To run the app locally, A file called simply ".env" needs to be created in the base directory. It requires the following data:
+
+DB_NAME='ecommerce_db'
+
+DB_USER='-your username here-'
+
+DB_PASSWORD='-your password here-'
+
+SuperSecret='-your secret phrase here-'
+
+In the command line, run the command "npm i" to install the app's dependencies. Next open up a MYSQL terminal and run a SOURCE command to establish the database from the schema.sql file located in the db folder in the project's base directory. At that point, it should be good to go and can be started with the command "npm start". Your own instance of a Heroku deployment could also be achieved by running the commands "heroku create", "git push heroku main", and "heroku config:set SuperSecret="your secret phrase here"". The last command establish the secret variable that is necessary for running sessions. At that point the app should be fully up and running.
 
 ## Usage
 
