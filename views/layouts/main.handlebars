@@ -24,12 +24,12 @@
           <p class="lead">A Tech Blog</p>
           <nav class="float-end">
             <a href="/" class="btn text-light">Homepage</a>
-            {{! Will display options for the dashboard and logging out if the user is logged in }}
+            <a
+              href="/dashboard"
+              class="btn text-light text-decoration-none"
+            >Dashboard</a>
+            {{! Will display options for logging out if the user is logged in }}
             {{#if loggedIn}}
-              <a
-                href="/dashboard"
-                class="btn text-light text-decoration-none"
-              >Dashboard</a>
               <button id="logout" class="btn text-light">Logout</button>
             {{else}}
               {{! Otherwise the user will have the option to log in }}
